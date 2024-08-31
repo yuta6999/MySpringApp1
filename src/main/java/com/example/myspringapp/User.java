@@ -8,8 +8,9 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
