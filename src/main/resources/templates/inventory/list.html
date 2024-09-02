@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventories</title>
+</head>
+<body>
+    <h1>Inventories</h1>
+	<table border="1">
+	    <thead>
+	        <tr>
+	            <th>ID</th>
+	            <th>Product</th>
+	            <th>Quantity</th>
+	            <th>Warehouse</th>
+				<th>RegisteredAt</th>
+				<th>RegisteredBy</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="inventory : ${inventories}">
+	            <td th:text="${inventory.id}"></td>
+	            <td>	<a th:href="@{/products/{id}(id=${inventory.product.id})}" th:text="${inventory.product.name}"></a></td>
+	            <td th:text="${inventory.quantity}"></td>
+				<td>	<a th:href="@{/warehouses/{id}/edit(id=${inventory.warehouse.id})}" th:text="${inventory.warehouse.name}"></a></td>
+				<td th:text="${inventory.registeredAt}"></td>
+				<td th:text="${inventory.registeredBy}"></td>
+	        </tr>
+	    </tbody>
+	</table>
+</body>
+</html>

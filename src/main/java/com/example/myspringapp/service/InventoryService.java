@@ -34,4 +34,7 @@ public class InventoryService {
 		return inventoryRepository.findAll();
 	}
 
+	public Inventory findById(Long id) {
+		return inventoryRepository.findById(id).orElse(null);
+	}
 }
