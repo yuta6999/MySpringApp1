@@ -1,4 +1,4 @@
-package com.example.myspringapp;
+package com.example.myspringapp.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,14 +9,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class User {
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private String name;
-
-	private String email;
-
 }

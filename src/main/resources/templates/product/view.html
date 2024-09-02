@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Details</title>
+</head>
+<body>
+    <h1 th:text="${product.name}">Product Name</h1>
+    <p>In Stock: <span th:text="${inventories.size()}">0</span></p>
+    <a th:href="@{/products/{id}/inventories/new(id=${product.id})}">Add Inventory</a>
+    <ul>
+        <li th:each="inventory : ${inventories}">
+            Quantity: <span th:text="${inventory.quantity}"></span>
+            <a th:href="@{/products/{productId}/inventories/{inventoryId}/delete(productId=${product.id}, inventoryId=${inventory.id})}">Delete</a>
+        </li>
+    </ul>
+    <a th:href="@{/products}">Back to Products</a>
+</body>
+</html>
