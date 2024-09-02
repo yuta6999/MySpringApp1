@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Warehouse Form</title>
+</head>
+<body>
+    <h1 th:text="${warehouse.id == null ? 'New Warehouse' : 'Edit Warehouse'}"></h1>
+    <form th:action="@{${warehouse.id == null ? '/warehouses' : '/warehouses/' + warehouse.id}}" th:object="${warehouse}" method="post">
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" />
+
+        <label for="location">Location</label>
+        <input type="text" id="location" th:field="*{location}" />
+
+        <button type="submit">Save</button>
+    </form>
+    <a href="/warehouses">Back to List</a>
+</body>
+</html>

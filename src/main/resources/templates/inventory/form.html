@@ -8,6 +8,15 @@
     <form th:action="@{/products/{productId}/inventories(productId=${inventory.product.id})}" th:object="${inventory}" method="post">
         <label for="quantity">Quantity</label>
         <input type="number" id="quantity" th:field="*{quantity}" />
+
+        <label for="warehouse">Warehouse</label>
+        <select id="warehouse" name="warehouseId">
+            <option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
+        </select>
+
+        <label for="registeredBy">Registered By</label>
+        <input type="text" id="registeredBy" name="registeredBy" />
+
         <button type="submit">Save</button>
     </form>
 </body>

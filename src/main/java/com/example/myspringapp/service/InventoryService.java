@@ -1,5 +1,6 @@
 package com.example.myspringapp.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,9 @@ public class InventoryService {
 		return inventoryRepository.findByProduct(product);
 	}
 
-	public void save(Inventory inventory) {
+	public void save(Inventory inventory, String registeredBy) {
+		inventory.setRegisteredAt(LocalDateTime.now());
+		inventory.setRegisteredBy(registeredBy);
 		inventoryRepository.save(inventory);
 	}
 

@@ -1,5 +1,7 @@
 package com.example.myspringapp.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,5 +23,14 @@ public class Inventory {
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 
+	@ManyToOne
+	@JoinColumn(name = "warehouse_id", nullable = false)
+	private Warehouse warehouse;
+
 	private int quantity;
+
+	private LocalDateTime registeredAt;
+
+	private String registeredBy;
+
 }

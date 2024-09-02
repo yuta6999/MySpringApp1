@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.myspringapp.entity.Inventory;
 import com.example.myspringapp.entity.Product;
+import com.example.myspringapp.entity.Warehouse;
+import com.example.myspringapp.repository.WarehouseRepository;
 import com.example.myspringapp.service.InventoryService;
 import com.example.myspringapp.service.ProductService;
 
@@ -23,6 +26,9 @@ public class ProductController {
 
 	@Autowired
 	private InventoryService inventoryService;
+
+	@Autowired
+	private WarehouseRepository warehouseRepository;
 
 	@GetMapping
 	public String listProducts(Model model) {
@@ -61,15 +67,21 @@ public class ProductController {
 		Product product = productService.findById(productId);
 		Inventory inventory = new Inventory();
 		inventory.setProduct(product);
+
 		model.addAttribute("inventory", inventory);
+		model.addAttribute("warehouses", warehouseRepository.findAll()); // 倉庫リストをモデルに追加
 		return "inventory/form";
 	}
 
 	@PostMapping("/{productId}/inventories")
-	public String saveInventory(@PathVariable Long productId, @ModelAttribute Inventory inventory) {
+	public String saveInventory(@PathVariable Long productId, @ModelAttribute Inventory inventory,
+			@RequestParam Long warehouseId, @RequestParam String registeredBy) {
 		Product product = productService.findById(productId);
+		Warehouse warehouse = warehouseRepository.findById(warehouseId)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid warehouse ID"));
 		inventory.setProduct(product);
-		inventoryService.save(inventory);
+		inventory.setWarehouse(warehouse);
+		inventoryService.save(inventory, registeredBy);
 		return "redirect:/products/" + productId;
 	}
 
