@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+
+    <h2>Products</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Inventory</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Warehouse</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="inventory : ${inventories}">
+                <td th:text="${inventory.id}"></td>
+                <td th:text="${inventory.product.name}"></td>
+                <td th:text="${inventory.quantity}"></td>
+                <td th:text="${inventory.warehouse.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Warehouses</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="warehouse : ${warehouses}">
+                <td th:text="${warehouse.id}"></td>
+                <td th:text="${warehouse.name}"></td>
+                <td th:text="${warehouse.location}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
