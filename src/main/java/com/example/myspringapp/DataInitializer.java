@@ -41,7 +41,7 @@ public class DataInitializer {
 			if (userRepository.count() == 0) {
 				User admin = new User();
 				admin.setUsername("admin");
-				admin.setPassword(passwordEncoder.encode("admin123"));
+				admin.setPassword(passwordEncoder.encode("123"));
 
 				// デフォルトの管理者ロールを取得し、ユーザーに割り当て
 				Role adminRole = roleRepository.findByName("ROLE_ADMIN").orElseThrow();
