@@ -14,9 +14,6 @@
             <option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
         </select>
 
-        <label for="registeredBy">Registered By</label>
-        <input type="text" id="registeredBy" name="registeredBy" />
-
         <button type="submit">Save</button>
     </form>
 </body>

@@ -43,7 +43,7 @@ public class InventoryController {
 
 	@PostMapping
 	public String saveInventory(@ModelAttribute Inventory inventory) {
-		inventoryService.save(inventory, "admin"); // Example registeredBy value
+		inventoryService.save(inventory);
 		return "redirect:/inventories";
 	}
 
@@ -59,7 +59,7 @@ public class InventoryController {
 	@PostMapping("/{id}")
 	public String updateInventory(@PathVariable Long id, @ModelAttribute Inventory inventory) {
 		inventory.setId(id);
-		inventoryService.save(inventory, "admin"); // Example registeredBy value
+		inventoryService.save(inventory);
 		return "redirect:/inventories";
 	}
 

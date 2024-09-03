@@ -89,13 +89,13 @@ public class ProductController {
 
 	@PostMapping("/{productId}/inventories")
 	public String saveInventory(@PathVariable Long productId, @ModelAttribute Inventory inventory,
-			@RequestParam Long warehouseId, @RequestParam String registeredBy) {
+			@RequestParam Long warehouseId) {
 		Product product = productService.findById(productId);
 		Warehouse warehouse = warehouseRepository.findById(warehouseId)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid warehouse ID"));
 		inventory.setProduct(product);
 		inventory.setWarehouse(warehouse);
-		inventoryService.save(inventory, registeredBy);
+		inventoryService.save(inventory);
 		return "redirect:/products/" + productId;
 	}
 
