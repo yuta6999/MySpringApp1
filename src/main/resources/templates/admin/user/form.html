@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User</title>
+</head>
+<body>
+<h1 th:text="${user.id != null} ? 'Edit User' : 'New User'"></h1>
+<form th:action="@{/admin/users/save}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    
+    <div>
+        <label for="username">Username</label>
+        <input type="text" th:field="*{username}" id="username"/>
+    </div>
+    
+    <div>
+        <label for="password">Password</label>
+        <input type="password" th:field="*{password}" id="password"/>
+    </div>
+    
+    <div>
+        <label for="roles">Roles</label>
+        <select multiple="multiple" th:field="*{roles}" id="roles">
+            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}">Role</option>
+        </select>
+    </div>
+    
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
+</body>
+</html>
