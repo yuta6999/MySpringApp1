@@ -1,0 +1,16 @@
+<!-- src/main/resources/templates/header.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="sidebar">
+        <aside>
+		    <ul>
+		        <li><a th:href="@{/admin/users}">Manage Users</a></li>
+		        <li><a th:href="@{/products}">Manage Products</a></li>
+		        <li><a th:href="@{/inventories}">Manage Inventories</a></li>
+		        <li><a th:href="@{/warehouses}">Manage Warehouses</a></li>
+		    </ul>
+        </aside>
+    </div>
+</body>
+</html>

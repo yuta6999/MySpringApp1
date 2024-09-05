@@ -1,0 +1,47 @@
+/* 全体レイアウトの設定 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ヘッダー */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    flex-shrink: 0; /* ヘッダーの高さを固定 */
+}
+
+/* メインコンテンツのコンテナ */
+.main-content {
+    display: flex;
+    flex: 1; /* メインコンテンツが空きスペースをすべて使用 */
+}
+
+/* サイドバー */
+aside {
+    width: 200px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+/* メインコンテンツ */
+.content {
+    flex: 1; /* 残りのスペースを使ってメインコンテンツを伸縮 */
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+/* フッター */
+footer {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    flex-shrink: 0; /* フッターの高さを固定 */
+}

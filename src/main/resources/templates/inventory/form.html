@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>New Inventory</title>
+    <title>ホームページ</title>
+	<link th:href="@{/../../css/style.css}" rel="stylesheet" />
 </head>
 <body>
-    <h1>Add Inventory</h1>
-    <form th:action="@{/products/{productId}/inventories(productId=${inventory.product.id})}" th:object="${inventory}" method="post">
-        <label for="quantity">Quantity</label>
-        <input type="number" id="quantity" th:field="*{quantity}" />
+    <!-- ヘッダー -->
+	<div th:replace="header :: header"></div>
 
-        <label for="warehouse">Warehouse</label>
-        <select id="warehouse" name="warehouseId">
-            <option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
-        </select>
+	<!-- メインコンテンツとサイドバー -->
+	<div class="main-content">
+		
+		<!-- サイドバー -->
+		<div th:replace="sidebar :: sidebar"></div>
+		
+		<!-- メインコンテンツ -->
+		<section class="content">
+			    <h1>Add Inventory</h1>
+			    <form th:action="@{/products/{productId}/inventories(productId=${inventory.product.id})}" th:object="${inventory}" method="post">
+			        <label for="quantity">Quantity</label>
+			        <input type="number" id="quantity" th:field="*{quantity}" />
 
-        <button type="submit">Save</button>
-    </form>
+			        <label for="warehouse">Warehouse</label>
+			        <select id="warehouse" name="warehouseId">
+			            <option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
+			        </select>
 
-	<a th:href="@{/warehouses/new}">Add New Warehouse</a>
+			        <button type="submit">Save</button>
+			    </form>
+
+				<a th:href="@{/warehouses/new}">Add New Warehouse</a>
+			
+		</section>
+		
+	</div>
+
+    <!-- フッター -->
+    <div th:replace="footer :: footer"></div>
 </body>
 </html>

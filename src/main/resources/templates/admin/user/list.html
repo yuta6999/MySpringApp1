@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Users</title>
+    <title>ホームページ</title>
+	<link th:href="@{/../../css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<h1>Users</h1>
-<a href="/admin/users/new">New User</a>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Roles</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.id}">1</td>
-        <td th:text="${user.username}">Username</td>
-        <td th:text="${#strings.listJoin(user.roles, ', ')}">Roles</td>
-        <td>
-            <a th:href="@{/admin/users/edit/{id}(id=${user.id})}">Edit</a>
-            <a th:href="@{/admin/users/delete/{id}(id=${user.id})}">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <!-- ヘッダー -->
+	<div th:replace="~{header :: header}"></div>
+
+	<!-- メインコンテンツとサイドバー -->
+	<div class="main-content">
+		
+		<!-- サイドバー -->
+		<div th:replace="~{sidebar :: sidebar}"></div>
+		
+		<!-- メインコンテンツ -->
+		<section class="content">
+			
+			<h1>Users</h1>
+			<a href="/admin/users/new">New User</a>
+			<table>
+			    <thead>
+			    <tr>
+			        <th>ID</th>
+			        <th>Username</th>
+			        <th>Roles</th>
+			        <th>Actions</th>
+			    </tr>
+			    </thead>
+			    <tbody>
+			    <tr th:each="user : ${users}">
+			        <td th:text="${user.id}">1</td>
+			        <td th:text="${user.username}">Username</td>
+			        <td th:text="${#strings.listJoin(user.roles, ', ')}">Roles</td>
+			        <td>
+			            <a th:href="@{/admin/users/edit/{id}(id=${user.id})}">Edit</a>
+			            <a th:href="@{/admin/users/delete/{id}(id=${user.id})}">Delete</a>
+			        </td>
+			    </tr>
+			    </tbody>
+			</table>
+			
+		</section>
+		
+	</div>
+
+    <!-- フッター -->
+    <div th:replace="~{footer :: footer}"></div>
 </body>
 </html>

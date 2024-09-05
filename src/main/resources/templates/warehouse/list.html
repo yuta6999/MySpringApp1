@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Warehouses</title>
+    <title>ホームページ</title>
+	<link th:href="@{/../../css/style.css}" rel="stylesheet" />
 </head>
 <body>
-    <h1>Warehouses</h1>
-    <a th:href="@{/warehouses/new}">Add New Warehouse</a>
-    <ul>
-        <li th:each="warehouse : ${warehouses}">
-            <span th:text="${warehouse.name}"></span> - 
-            <span th:text="${warehouse.location}"></span>
-            <a th:href="@{/warehouses/{id}/edit(id=${warehouse.id})}">Edit</a>
-            <a th:href="@{/warehouses/{id}/delete(id=${warehouse.id})}" onclick="return confirm('Are you sure?');">Delete</a>
-        </li>
-    </ul>
+    <!-- ヘッダー -->
+	<div th:replace="header :: header"></div>
+
+	<!-- メインコンテンツとサイドバー -->
+	<div class="main-content">
+		
+		<!-- サイドバー -->
+		<div th:replace="sidebar :: sidebar"></div>
+		
+		<!-- メインコンテンツ -->
+		<section class="content">
+			
+			<h1>Warehouses</h1>
+			<a th:href="@{/warehouses/new}">Add New Warehouse</a>
+			<ul>
+			    <li th:each="warehouse : ${warehouses}">
+			        <span th:text="${warehouse.name}"></span> - 
+			        <span th:text="${warehouse.location}"></span>
+			        <a th:href="@{/warehouses/{id}/edit(id=${warehouse.id})}">Edit</a>
+			        <a th:href="@{/warehouses/{id}/delete(id=${warehouse.id})}" onclick="return confirm('Are you sure?');">Delete</a>
+			    </li>
+			</ul>
+			
+		</section>
+		
+	</div>
+
+    <!-- フッター -->
+    <div th:replace="footer :: footer"></div>
 </body>
 </html>

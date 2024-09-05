@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Warehouse Form</title>
+    <title>ホームページ</title>
+	<link th:href="@{/../../css/style.css}" rel="stylesheet" />
 </head>
 <body>
-    <h1 th:text="${warehouse.id == null ? 'New Warehouse' : 'Edit Warehouse'}"></h1>
-    <form th:action="@{${warehouse.id == null ? '/warehouses' : '/warehouses/' + warehouse.id}}" th:object="${warehouse}" method="post">
-        <label for="name">Name</label>
-        <input type="text" id="name" th:field="*{name}" />
+    <!-- ヘッダー -->
+	<div th:replace="header :: header"></div>
 
-        <label for="location">Location</label>
-        <input type="text" id="location" th:field="*{location}" />
+	<!-- メインコンテンツとサイドバー -->
+	<div class="main-content">
+		
+		<!-- サイドバー -->
+		<div th:replace="sidebar :: sidebar"></div>
+		
+		<!-- メインコンテンツ -->
+		<section class="content">
+			
+			<h1 th:text="${warehouse.id == null ? 'New Warehouse' : 'Edit Warehouse'}"></h1>
+			<form th:action="@{${warehouse.id == null ? '/warehouses' : '/warehouses/' + warehouse.id}}" th:object="${warehouse}" method="post">
+			    <label for="name">Name</label>
+			    <input type="text" id="name" th:field="*{name}" />
 
-        <button type="submit">Save</button>
-    </form>
-    <a href="/warehouses">Back to List</a>
+			    <label for="location">Location</label>
+			    <input type="text" id="location" th:field="*{location}" />
+
+			    <button type="submit">Save</button>
+			</form>
+			<a href="/warehouses">Back to List</a>
+			
+		</section>
+		
+	</div>
+
+    <!-- フッター -->
+    <div th:replace="footer :: footer"></div>
 </body>
 </html>
