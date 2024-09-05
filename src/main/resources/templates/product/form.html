@@ -6,13 +6,13 @@
 </head>
 <body>
     <!-- ヘッダー -->
-	<div th:replace="header :: header"></div>
+	<div th:replace="~{header :: header}"></div>
 
 	<!-- メインコンテンツとサイドバー -->
 	<div class="main-content">
 		
 		<!-- サイドバー -->
-		<div th:replace="sidebar :: sidebar"></div>
+		<div th:replace="~{sidebar :: sidebar}"></div>
 		
 		<!-- メインコンテンツ -->
 		<section class="content">
@@ -29,6 +29,6 @@
 	</div>
 
     <!-- フッター -->
-    <div th:replace="footer :: footer"></div>
+    <div th:replace="~{footer :: footer}"></div>
 </body>
 </html>
