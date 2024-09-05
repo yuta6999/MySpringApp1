@@ -8,8 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.myspringapp.entity.Role;
 import com.example.myspringapp.entity.User;
+import com.example.myspringapp.entity.Warehouse;
 import com.example.myspringapp.repository.RoleRepository;
 import com.example.myspringapp.repository.UserRepository;
+import com.example.myspringapp.repository.WarehouseRepository;
 
 @Configuration
 public class DataInitializer {
@@ -19,6 +21,8 @@ public class DataInitializer {
 
 	@Autowired
 	private RoleRepository roleRepository;
+	@Autowired
+	private WarehouseRepository warehouseRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -48,6 +52,24 @@ public class DataInitializer {
 				admin.getRoles().add(adminRole);
 
 				userRepository.save(admin);
+			}
+
+			// 倉庫が存在しない場合、デフォルトの倉庫を作成
+			if (warehouseRepository.count() == 0) {
+				Warehouse warehouse1 = new Warehouse();
+				warehouse1.setName("第一倉庫");
+				warehouse1.setLocation("東京");
+				warehouseRepository.save(warehouse1);
+
+				Warehouse warehouse2 = new Warehouse();
+				warehouse2.setName("第二倉庫");
+				warehouse2.setLocation("神奈川");
+				warehouseRepository.save(warehouse2);
+
+				Warehouse warehouse3 = new Warehouse();
+				warehouse3.setName("第三倉庫");
+				warehouse3.setLocation("埼玉");
+				warehouseRepository.save(warehouse3);
 			}
 		};
 	}
