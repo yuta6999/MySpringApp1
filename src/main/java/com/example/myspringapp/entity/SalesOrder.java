@@ -1,5 +1,6 @@
 package com.example.myspringapp.entity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -13,15 +14,14 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Product {
-
+public class SalesOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String customerName;
+	private LocalDate orderDate;
 
-	private String name;
-
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	private List<BOM> boms;
+	@OneToMany(mappedBy = "salesOrder", cascade = CascadeType.ALL)
+	private List<ManufacturingOrder> manufacturingOrders;
 
 }

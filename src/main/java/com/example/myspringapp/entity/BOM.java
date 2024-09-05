@@ -1,27 +1,29 @@
 package com.example.myspringapp.entity;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import lombok.Data;
 
 @Data
 @Entity
-public class Product {
-
+public class BOM {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String name;
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private Product product;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	private List<BOM> boms;
+	@ManyToOne
+	@JoinColumn(name = "material_id")
+	private Material material;
+
+	private int quantity; // この材料が必要な数量
 
 }
